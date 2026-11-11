@@ -1,0 +1,13 @@
+{{Bot|Romano1920}}
+'''MecateBot''' is a research bot operated by [[User:Romano1920|Romano1920]]. A ''mecate'' is a rope: the bot ties together journals, articles and citations of the social sciences and humanities, with particular attention to the Global South.
+
+== Tasks ==
+Approval request: [[Wikidata:Requests for permissions/Bot/MecateBot]]
+# '''Journals:''' complete existing journal items (ISSN P236, country of origin P495) and create items for journals with an ISSN that have no item.
+# '''Articles:''' create or complete items for articles of those journals (subject to approval after its own trial).
+# '''Citations:''' add cites work (P2860) supported by checked reference lists (subject to approval after its own trial).
+
+Every statement is referenced; one edit per item; no merges or deletions. Code: https://github.com/rfagoaga/mecatebot
+
+== Problems ==
+Please report problems at [[User talk:Romano1920]]. The operator will stop the bot and fix any error.

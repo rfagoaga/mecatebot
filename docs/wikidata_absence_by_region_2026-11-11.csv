@@ -1,0 +1,16 @@
+grouping,region,journals,issn_journals,no_wikidata_item,pct_no_item,title_candidates_review,pct_in_crossref,pct_deposit_references
+regions,Europe,29155,28866,10418,36.1,1833,61.6,37.4
+regions,South-eastern Asia,11201,11190,7726,69.0,521,82.4,9.6
+regions,Northern America,11070,10957,3287,30.0,613,57.6,31.9
+regions,No country assigned,10986,1737,1460,84.1,136,71.5,23.1
+regions,Latin America & Caribbean,5747,5647,1936,34.3,235,76.3,26.7
+regions,Eastern Asia,3474,3439,966,28.1,106,61.2,24.2
+regions,Southern Asia,2902,2879,1478,51.3,140,57.1,16.6
+regions,Africa,2413,2396,1358,56.7,215,63.1,14.4
+regions,Western Asia,2069,1979,959,48.5,111,76.3,39.9
+regions,Australia & New Zealand,975,968,294,30.4,43,46.7,21.4
+regions,Central Asia,202,202,143,70.8,19,79.7,23.8
+regions,Pacific Islands,20,20,16,80.0,2,55.0,55.0
+north_south,Global North,44609,44174,14943,33.8,2602,60.7,34.9
+north_south,Global South,24619,24369,13638,56.0,1236,74.7,17.0
+north_south,No country,10986,1737,1460,84.1,136,71.5,23.1

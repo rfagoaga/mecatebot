@@ -1,0 +1,96 @@
+=== MecateBot ===
+{{Request for permissions/Bot
+|bot=MecateBot
+|operator=Romano1920
+}}
+'''Operator:''' [[User:Romano1920|Romano1920]] (more than one million edits on Wikidata, mostly on journals, articles and citations)
+
+'''Tasks:''' three stages, each a separate scientific product with its own trial: (1) journals, (2) articles, (3) citations, in the social sciences and humanities. Each stage starts only after its trial has been reviewed here; within each stage the work runs in blocks with verification between blocks.
+
+'''Code:''' https://github.com/rfagoaga/mecatebot (open source; credits in §8)
+
+'''Function details:'''
+
+== 1. Purpose ==
+MecateBot (a ''mecate'' is a rope: the bot ties journals, articles and citations together) supports a global, evidence-based map of the social sciences and humanities, covering scholarly publishing from the late nineteenth century through 2025, with particular attention to the Global South, which is underrepresented in the major bibliographic and citation databases. Open access alone does not make a publication FAIR: the project distinguishes discoverability and access from machine-readability, metadata quality, interoperability, licensing and preservation.
+
+== 1b. The problem: three layers where scholarship becomes invisible ==
+From the project's work we distinguish three layers. A publication can be visible in one and invisible in the next; each MecateBot stage addresses one layer.
+
+'''Journals.''' (1) with ISSN; (2) without ISSN; (3) with a known country of origin or not; (4) with or without structured metadata on a platform; (5) articles and references openly available; (6) articles open but references not; (7) neither articles nor references on any platform; (8) published with Open Journal Systems (OJS), whose metadata export is often incomplete.
+
+'''Articles.''' (1) research articles with DOIs; (2) book reviews with DOIs; (3) other DOI-bearing items (indexes, tables of contents, author lists, front matter); (4) articles with a bibliography; (5) articles without one; (6) bibliographies in non-standard formats; (7) no bibliography at all; (8) articles not online. A DOI alone does not tell which of these an item is: Stage 2 includes a visual check of document types.
+
+'''Bibliographies.''' (1) present in Crossref, OpenAlex or open bibliographic databases; (2) structured for machine reading; (3) with persistent identifiers (DOIs, etc.) for cited works; (4) PDFs with OCR and metadata; (5) flat PDFs (digitized images); (6) no bibliography because the article is not online; (7) cited in styles that follow no recognizable rules.
+
+Wikidata can represent every layer, including journals without ISSN, items without DOIs and citations recovered from bibliographies that exist nowhere else. That is why MecateBot works on journals, articles and citations, in this order.
+
+== 2. Datasets on Harvard Dataverse ==
+The results are published as datasets on Harvard Dataverse (journals, articles, citations). For every record the datasets include '''the repository or source from which the information was taken''' and '''the Wikidata QID''' of the corresponding item (existing, completed or created by MecateBot, with the revision ID). Researchers can move between the dataset, the original sources and Wikidata without repeating the reconciliation work, and Wikidata statements can cite the published dataset.
+
+== 3. What is missing (provisional figures, November 2026; report: [link]) ==
+All figures are approximate: the register is still under review, and article and citation figures cover only what publishers deposited in Crossref, not a full harvest.
+
+'''Journals.''' About 70,300 journals of the register have an ISSN (111,587 ISSNs checked against P236/P7363 on 9 Nov. 2026):
+* ~32,500 have a complete item;
+* ~2,150 have an item missing one of the journal's ISSNs or its country of origin (P495);
+* ~34,050 were not found by SPARQL. All of them were re-checked with the search API (all ISSNs, P236|P7363, plus a title search among journal items; 10–11 Nov. 2026): 39 were found by ISSN (0.1%), 1,830 have a single title-only candidate and 2,144 several generic-title candidates (all sent to human review, never created automatically), and '''30,041 (88.2%) have no item'''. These ~30,000 journals are the candidates for creation.
+* Absence is regional (verified journal by journal): Global South 56% of ISSN journals without an item, Global North 34%; South-eastern Asia 69%, Africa 57%, Southern Asia 51%, versus Europe 36%, Latin America 34% and Northern America 30%. By country: Thailand 90%, Nigeria 77%, Indonesia 69%. Summary: [link to why_mecatebot_findings_summary.md].
+* ~950 journals have two or more items and 337 items hold ISSNs of several journals (mostly title histories; some wrong merges, e.g. PoLAR / The Polar Journal, fixed in Nov. 2026). These are reported, never edited by the bot.
+
+'''Articles.''' The register's journals have ~26.2 million works in the Crossref Public Data File (March 2026); ~8.6 million (33%) deposit references. How many already exist in Wikidata (by DOI, P356) will be measured and reported here before the articles trial.
+
+'''Citations.''' Those articles deposit ~334.4 million references: ~187.8 million with a DOI (~2.3 million of the cited DOIs are not in Crossref), ~28.3 million with only a journal title, ~68.2 million with only unstructured text, and ~50.0 million with other partial data (e.g. author and year only).
+
+'''Easy and hard cases.''' Of the ≈80,200 journals (with and without ISSN), 25% have DOIs and deposited references, 33% have DOIs but no references, 29% are indexed or hosted somewhere without DOIs, and 13% are known only from library catalogues. In the Global South 57% are in the second group (infrastructure that exists but is empty), against 26% in the North. MecateBot writes only the last step; the identification of journals, articles and cited works across platforms, catalogues and authority files happens before, and is documented in the published datasets.
+
+'''Expected scale (upper bounds, refined stage by stage).''' ≈80,000 journals linked by QID (≈30,000 created); up to ≈26 million articles with DOIs (existing ones measured first); ≈185 million references with a resolvable DOI, and ≈146 million that need matching against catalogues or manual search before any comparison with Wikidata.
+
+== 4. Stages and trials ==
+Each stage is one scientific product and has its own trial (50–100 edits), reported here with the edit list, the verification log and any problems. The next stage begins only after its trial has been reviewed. Before each trial the code is tested in the Wikidata sandbox items. We ask reviewers whether approval may cover all three stages subject to these trials, or whether articles and citations should be separate requests.
+
+'''Stage 1 — Journals.''' Complete existing items (missing P236, P495) and create items for journals with an ISSN that have no item, including historical titles and title changes documented by a source (P155/P156). Trial: about 25 completions and 25 creations (creations only from the 30,041 verified absent journals).
+
+'''Subjects of journals (P921).''' Only about 20% of the ~121,600 scientific/academic journal items in Wikidata have a main subject (P921). MecateBot adds P921 to journals '''only from the evidence in our register''': the subject or discipline that a cited source itself assigns to the journal (e.g. ERIH PLUS disciplines, DOAJ subjects, national registers such as the Norwegian and Finnish ones, library classification in catalogue records, platform subject areas such as SciELO or CNPq areas in Miguilim), mapped to a verified Wikidata subject item. Never from title keywords, citation patterns or our own inference; each P921 carries the source as reference. Ambiguous mappings go to review.
+
+'''Stage 2 — Articles.''' Create or complete items for articles of register journals from Crossref/DataCite metadata: P31, P1476, P356, P577, P1433 (verified journal), P478/P433/P304, authors as P2093 with P1545 (P50 only for uniquely identified authors), P407 only when deposited. Priority: journals with no articles in Wikidata, Global South first.
+
+'''Stage 3 — Citations.''' Add P2860 only when the reference is in a checked source record (the deposited reference list or the published bibliography) and both items exist and pass the verification in §5. No citation is inferred from similarity, co-occurrence or an unverified match. Priority: journals whose citations are absent from the open citation graph.
+
+'''Blocks.''' After each trial the work runs in blocks of a size similar to the trial, growing only if no problems appear (for journals, e.g. 100 → 500 → 1,000 items). Each block is checked before the next: edit list, sample review, constraint-violation reports and talk-page messages. With millions of records something can go wrong; blocks keep any error small and reversible.
+
+Out of scope in all stages: merges, deletions, replacing others' statements, abstracts, P953 pointing to doi.org, descriptions in several languages, alias clean-up.
+
+== 5. Double verification of identity and existence ==
+'''Check 1 — candidates (bulk, before preparing edits).'''
+* Journals: SPARQL by every ISSN (P236, P7363); then the search API (haswbstatement on all ISSNs of the journal) and a title search restricted to journal items.
+* Articles and cited works: DOI (P356, case-insensitive), then title + year + journal candidates.
+* Result per record: exists / several items (review) / title-only candidate (review) / absent. A search result is a candidate, never proof of identity.
+
+'''Check 2 — live, at the moment of writing (per item).'''
+* The target is re-fetched (wbgetentities): it must exist, must not be a redirect or deleted, must still carry the matching identifier (ISSN or DOI) and the expected P31; its lastrevid is sent as baserevid.
+* Before creating, the identifier search and the title search are repeated within minutes; if anything is found, nothing is created and the record goes to review.
+* Every linked item (P1433 journal, P2860 cited work, P495 country, P123 publisher) is checked the same way: exists, not a redirect, expected type. A journal item holding ISSNs of two different journals is never used.
+* After a timeout or uncertain response the bot stops and reconciles before any retry; a creation is never blindly repeated.
+* Title, ISBN or ISSN matches alone never authorize an automatic update.
+
+== 6. Edit style and references ==
+Following the bot policy and community feedback ([[User talk:Kanashimi]] "Bot problems"; [[User talk:Romano1920]]):
+* one wbeditentity edit per item with all statements, qualifiers and references; bot flag set and assert=bot on every edit; descriptive edit summaries naming the stage and the source;
+* one `mul` label (the title, cleaned of encoding errors, HTML entities and markup) and one English description on new items, no copies into other languages or variants ([[Help:Default values for labels and aliases]]);
+* P31 on every new item; no duplicate statements; when a statement already exists, the new source is added to it as an additional reference instead of creating a new statement; conflicting values are held for review; existing statements are changed only by GUID;
+* no P2093 when an author with the same P1545 already exists.
+Every statement has a reference: P248 stated in the source (Crossref Q5188229, DOAJ Q1227538, OpenAlex Q107507571, Latindex Q6496562, Mir@bel Q25389821, ERIH PLUS Q22921221, ZDB Q186844, SUDOC Q2597810, ROAD Q47495709, SciELO Q7433389, Redalyc Q7305434, J-STAGE Q11225111, DergiPark Q56101155, Publication Forum Q20253955, and the published Dataverse dataset), P854 reference URL when stable, P813 retrieved.
+
+== 7. Operation ==
+* maxlag=5 and API etiquette; initial rate 10 edits per minute (one edit = one item), configurable and raised only if reviewers agree;
+* a stop switch; logs linking every edit (revision ID) to its source record and to the dataset record;
+* monitoring of constraint-violation reports and of the bot's talk page (redirected to the operator's); the bot stops on any error pattern or concern, and the operator corrects errors.
+
+== 8. Credits ==
+MecateBot adapts ideas and code from [https://github.com/rdmpage/bhl-wikidata bhl-wikidata] by Roderic D. M. Page, from the operator's earlier tools (DOI-first Wikidata generator, Simple DOI QuickStatements, ISSN–Crossref retriever), and follows the community recommendations cited in §6. Data sources are credited in the edit references and in the published datasets.
+
+== Questions for reviewers ==
+* May approval cover the three stages, each subject to its own trial reviewed here, or should articles and citations be requested separately?
+* Are the block sizes and the initial rate appropriate?
+--~~~~

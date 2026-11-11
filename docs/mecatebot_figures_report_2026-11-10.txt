@@ -1,0 +1,117 @@
+MECATEBOT — PROVISIONAL FIGURES BEHIND THE BOT REQUEST
+Report date: 10 November 2026 (updated 11 November 2026 with the full re-check)
+Operator: Romano1920 (Wikidata)
+Status: PROVISIONAL. All figures are approximate and tentative. They describe the state of an
+ongoing research register, not a finished census.
+
+------------------------------------------------------------------------------------------
+0. WHAT THESE FIGURES ARE, AND WHAT THEY ARE NOT
+------------------------------------------------------------------------------------------
+- The journal register is a work in progress. Journals enter it from about 80 bibliographic
+  sources (directories, national registers, library catalogues, regional platforms). About
+  250,000 further candidate records are still awaiting human review, so the number of
+  journals will change.
+- We have NOT harvested all articles or all citations of these journals. The article and
+  citation figures below come only from what publishers deposited in Crossref, as recorded in
+  the Crossref Public Data File (March 2026). Journals without DOIs, articles never registered
+  in Crossref and references never deposited are not counted; for the Global South these are
+  precisely the largest gaps.
+- The Wikidata figures are a snapshot taken on 9 November 2026. Wikidata changes every day.
+- Nothing here has been edited in Wikidata. All checks were read-only.
+
+------------------------------------------------------------------------------------------
+1. JOURNAL REGISTER (build "e21", 8 November 2026)
+------------------------------------------------------------------------------------------
+Scope: social sciences and humanities, 87 disciplines (Digital Commons taxonomy, level 2),
+late 19th century to 2025, with or without ISSN, active or ceased.
+- Journals in the register (de-duplicated across disciplines): ~80,200
+- Journals with a checksum-valid ISSN: ~70,300
+- Journals with an anchored country (sources agree): ~62,900
+- Journals present in Crossref (any DOI in the March 2026 file): ~46,300 (~58%)
+- Journals that deposit at least some references in Crossref: ~20,000 (~25%)
+Method: universe builder with provenance per observation; no automatic merges; keyword or
+citation evidence alone never admits a journal (it only creates review candidates).
+
+------------------------------------------------------------------------------------------
+2. JOURNALS IN WIKIDATA (snapshot 9 November 2026)
+------------------------------------------------------------------------------------------
+Check 1 (bulk): SPARQL on P236 (ISSN) and P7363 (ISSN-L) for 111,587 ISSNs of the ~70,300
+journals, in 732 queries; raw responses and receipts kept.
+  Status of the journals with ISSN (approximate):
+  - item exists and holds the journal's ISSNs ................ ~32,500
+  - item exists but lacks an ISSN or the country (P495) ...... ~2,150
+  - item's country differs from our anchored country ......... 13
+  - two or more items for the same journal ................... ~950
+  - one item holding ISSNs of several register records ....... ~640 records / 337 items
+      (93 with the same title: usually print/online split in our register;
+       244 with different titles: mostly title histories, possibly wrong merges)
+  - not found ................................................ ~34,050 (~48%)
+
+Check 2 (sample): 500 randomly chosen "not found" journals re-checked with the Wikidata
+search API (haswbstatement on P236/P7363, plus a title search restricted to journal items):
+  - found by ISSN (missed by SPARQL) ...... 1   (0.2%)
+  - title-only candidates ................. 68  (13.6%; mostly generic titles such as
+                                                  "Estudios", "Musique"; 23 = 4.6% with a
+                                                  single candidate, for human review)
+  - still absent .......................... 431 (86.2%)
+Check 3 (all): the ~34,050 "not found" journals, every one re-checked with the search API
+(10–11 November 2026; one query on all ISSNs, P236|P7363, and one title search among journal
+items; raw responses kept):
+  - found by ISSN (missed by SPARQL) ............ 39      (0.1%)
+  - one title-only candidate (human review) ..... 1,830   (5.4%)
+  - several generic-title candidates (review) ... 2,144   (6.3%)
+  - no item ..................................... 30,041  (88.2%)
+  Result: about 30,000 journals with ISSN (roughly 43% of the register's ISSN journals) have no
+  Wikidata item. Title-only candidates are never treated as identity.
+
+Absence by region after the full check (share of the register's ISSN journals with no item):
+  Central Asia 71% · South-eastern Asia 69% · Africa 57% · Southern Asia 51% · Western Asia 48% ·
+  Europe 36% · Latin America and the Caribbean 34% · Australia/New Zealand 30% · Northern America 30% ·
+  Eastern Asia 28%.  Global South 56% vs Global North 34% (Global North = Northern America, Europe,
+  Australia/New Zealand, Japan, South Korea, Israel, Taiwan, Singapore, Hong Kong).
+  Countries (>=300 ISSN journals): Thailand 90%, Nigeria 77%, Indonesia 69%, Pakistan 61%, Malaysia 60%,
+  India 53%; Brazil 31%, Mexico 33%; France 56%, Germany 50% (many ceased catalogue titles).
+  Reference deposit in Crossref: Global South 17% of ISSN journals vs Global North 35%.
+About half of the not-found journals (~17,600) do have DOIs in Crossref.
+
+------------------------------------------------------------------------------------------
+3. ARTICLES AND REFERENCES DEPOSITED IN CROSSREF (March 2026 public data file)
+------------------------------------------------------------------------------------------
+These figures count only what is in Crossref for the register's journals with ISSN.
+They are NOT a harvest of all articles or citations of these journals.
+- Works of the register's journals in Crossref: ~26.2 million
+- Works with at least one deposited reference: ~8.6 million (~33%)
+- Deposited references: ~334.4 million, of which
+    with a DOI ........................... ~187.8 million (~56%)
+    with only a journal title ............ ~28.3 million
+    with only unstructured text .......... ~68.2 million
+    with other partial data only ......... ~50.0 million (e.g. author and year)
+- Cited DOIs not found in Crossref: ~2.3 million
+- Not yet measured: how many of these articles already exist in Wikidata (by DOI, P356).
+  This will be measured and reported before any article edits.
+
+------------------------------------------------------------------------------------------
+4. LIMITATIONS
+------------------------------------------------------------------------------------------
+- Register membership, discipline assignment and country anchoring are under review; figures
+  can move by several percent.
+- Crossref-based figures under-represent journals without DOIs and publishers that do not
+  deposit references; they describe the visible part of the record, not the whole.
+- SPARQL and search results can lag behind edits; every creation will be re-checked live at
+  the moment of writing (see the bot request, "double verification").
+- Title-only matches are never treated as identity.
+
+------------------------------------------------------------------------------------------
+5. FILES AND SCRIPTS (operator's project folder)
+------------------------------------------------------------------------------------------
+- register-20261108-e21/                 journal register (build e21)
+- crossref-coverage-20261101-e21/        Crossref coverage per journal
+- crossref-citations-20261108-e20/       references of the register's journals (summary.json)
+- wikidata-check-20261109-e21/           raw SPARQL responses (P236/P7363)
+- wikidata-status-20261109-e21/          status per journal (summary.json)
+- wikidata-verify-sample-20261109/       500-journal search-API sample (summary.json)
+Scripts: harvest_group1_routes.py (wikidata-issn), wikidata_journal_status.py,
+wikidata_verify_sample.py, scan_crossref_citations.py, crossref_coverage_map.py,
+export_register.py. They will be published with the bot code.
+Final datasets will be deposited on Harvard Dataverse, with the source of each record and
+the Wikidata QID of each item.
